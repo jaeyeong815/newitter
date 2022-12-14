@@ -1,5 +1,13 @@
+import { useState } from 'react';
+import Router from 'Router';
+
 function App() {
-  return <div className="App"></div>;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  return (
+    <div>
+      <Router isLoggedIn={isLoggedIn} />
+    </div>
+  );
 }
 
 export default App;
