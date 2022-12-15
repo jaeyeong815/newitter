@@ -1,4 +1,4 @@
-import { createAccount, loginAccount } from 'fbase';
+import { createAccount, loginAccount, test } from 'fbase';
 import { useState } from 'react';
 
 const Auth = () => {
@@ -16,10 +16,13 @@ const Auth = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
+      let data;
       if (newAccount) {
-        createAccount(loginData.email, loginData.password);
+        data = await createAccount(loginData.email, loginData.password);
+        console.log('🚀 ~ file: Auth.js:21 ~ onSubmitHandler ~ data', data);
       } else {
-        loginAccount(loginData.email, loginData.password);
+        data = await loginAccount(loginData.email, loginData.password);
+        console.log('🚀 ~ file: Auth.js:25 ~ onSubmitHandler ~ data', data);
       }
     } catch (err) {
       console.log('🚀 ~ file: Auth.js:21 ~ onSubmitHandler ~ err', err);

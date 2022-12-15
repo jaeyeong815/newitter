@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Router from 'Router';
-import { authService } from 'fbase';
+import { authStateChanged } from 'fbase';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
-  return (
-    <div>
-      <Router isLoggedIn={isLoggedIn} />
-    </div>
-  );
+  const [init, setInit] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    authStateChanged(setIsLoggedIn, setInit);
+  }, []);
+
+  return <div>{init ? <Router isLoggedIn={isLoggedIn} /> : '초기화중 ... '}</div>;
 }
 
 export default App;

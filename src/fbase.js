@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from 'firebase/auth';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
@@ -14,26 +19,36 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
+
 export const authService = getAuth(firebaseApp);
-export const createAccount = (email, password) => {
-  createUserWithEmailAndPassword(authService, email, password)
-    .then((userCredential) => {
-      console.log(
-        '🚀 ~ file: fbase.js:23 ~ createAccount ~ userCredential.user',
-        userCredential.user
-      );
-    })
-    .catch((err) => {
-      console.log('🚀 ~ file: fbase.js:28 ~ createAccount ~ err', err.message);
-      return err;
-    });
+
+export const createAccount = async (email, password) => {
+  try {
+    const { user } = await createUserWithEmailAndPassword(authService, email, password);
+    return user;
+  } catch (err) {
+    const { message } = await err;
+    return message;
+  }
 };
-export const loginAccount = (email, password) => {
-  signInWithEmailAndPassword(authService, email, password)
-    .then((userCredential) => {
-      console.log('🚀 ~ file: fbase.js:34 ~ .then ~ userCredential', userCredential);
-    })
-    .catch((err) => {
-      console.log('🚀 ~ file: fbase.js:37 ~ loginAccount ~ err', err.message);
-    });
+
+export const loginAccount = async (email, password) => {
+  try {
+    const { user } = await signInWithEmailAndPassword(authService, email, password);
+    return user;
+  } catch (err) {
+    const { message } = await err;
+    return message;
+  }
+};
+
+export const authStateChanged = (setLogin, setInit) => {
+  onAuthStateChanged(authService, (user) => {
+    if (user) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+    setInit(true);
+  });
 };
