@@ -1,4 +1,4 @@
-import Newitter from 'components/Newitter';
+import Newitter from 'components/Main/Newitter';
 
 const Home = ({ user }) => {
   return <Newitter user={user} />;
