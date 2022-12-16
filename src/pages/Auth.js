@@ -17,6 +17,8 @@ const Auth = () => {
     });
   };
 
+  const toggleAccount = () => setNewAccount((prev) => !prev);
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (newAccount) {
@@ -39,6 +41,7 @@ const Auth = () => {
   return (
     <div>
       <form onSubmit={onSubmitHandler}>
+        <p onClick={toggleAccount}>{newAccount ? '로그인 하기' : '회원가입 하기'}</p>
         <input
           type='text'
           placeholder='Email'
