@@ -7,6 +7,7 @@ import {
   onSnapshot,
   orderBy,
   doc,
+  updateDoc,
   deleteDoc,
 } from 'firebase/firestore';
 
@@ -33,6 +34,11 @@ export const getNewits = async (setNewits) => {
     }));
     setNewits(newitObj);
   });
+};
+
+export const updateNewit = async (id, updateData) => {
+  const updateRef = doc(dbService, 'newits', id);
+  await updateDoc(updateRef, updateData);
 };
 
 export const deleteNewit = async (id) => {
