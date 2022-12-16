@@ -1,4 +1,4 @@
-import { addNewit, getNewits } from 'fbase/newitFbase';
+import { addNewit, getNewits } from 'utils/fbase/newitFbase';
 import { useEffect, useState } from 'react';
 
 const Newitter = ({ user }) => {

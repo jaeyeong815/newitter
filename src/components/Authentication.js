@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createAccount, loginAccount, googleLogin, githubLogin } from 'fbase/authFbase';
+import { createAccount, loginAccount, googleLogin, githubLogin } from 'utils/fbase/authFbase';
 import { stringReplace } from 'utils/stringReplace';
 
 const ERROR = 'error';

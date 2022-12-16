@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Router from 'Router';
-import { authStateChanged } from 'fbase/authFbase';
+import { authStateChanged } from 'utils/fbase/authFbase';
 
 function App() {
   const [init, setInit] = useState(false);

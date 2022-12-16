@@ -1,4 +1,4 @@
-import { logoutAccount } from 'fbase/authFbase';
+import { logoutAccount } from 'utils/fbase/authFbase';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
