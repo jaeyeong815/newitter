@@ -1,7 +1,7 @@
 import { addNewit, getNewits } from 'fbase/newitFbase';
 import { useEffect, useState } from 'react';
 
-const Newitter = () => {
+const Newitter = ({ user }) => {
   const [newitText, setNewitText] = useState('');
   const [newits, setNewits] = useState([]);
 
@@ -20,13 +20,11 @@ const Newitter = () => {
     getDbNewits();
   }, []);
 
-  const onChange = (e) => {
-    setNewitText(e.target.value);
-  };
+  const onChange = (e) => setNewitText(e.target.value);
 
   const onsubmit = (e) => {
     e.preventDefault();
-    addNewit(newitText);
+    addNewit(newitText, user);
     setNewitText('');
   };
 

@@ -34,13 +34,14 @@ export const loginAccount = async (email, password) => {
   }
 };
 
-export const authStateChanged = (setLogin, setInit) => {
+export const authStateChanged = (setLogin, setInit, setUser) => {
   onAuthStateChanged(authService, (user) => {
     if (user) {
       setLogin(true);
     } else {
       setLogin(false);
     }
+    setUser(user ?? null);
     setInit(true);
   });
 };
