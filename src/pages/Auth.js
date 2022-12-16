@@ -26,7 +26,7 @@ const Auth = () => {
     if (newAccount) {
       const data = await createAccount(loginData.email, loginData.password);
       console.log('🚀 ~ file: Auth.js:21 ~ onSubmitHandler ~ data', data);
-      if (data.includes(ERROR)) {
+      if (data.toString().includes(ERROR)) {
         setErrorMsg(stringReplace(data));
       }
     }
@@ -34,7 +34,7 @@ const Auth = () => {
     if (!newAccount) {
       const data = await loginAccount(loginData.email, loginData.password);
       console.log('🚀 ~ file: Auth.js:25 ~ onSubmitHandler ~ data', data);
-      if (data.includes(ERROR)) {
+      if (data.toString().includes(ERROR)) {
         setErrorMsg(stringReplace(data));
       }
     }
