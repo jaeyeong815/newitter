@@ -1,5 +1,6 @@
-import { addNewit, getNewits, deleteNewit } from 'utils/fbase/newitFbase';
 import { useEffect, useState } from 'react';
+import NewitItem from './NewitItem';
+import { addNewit, getNewits } from 'utils/fbase/newitFbase';
 
 const Newitter = ({ user }) => {
   const [newitText, setNewitText] = useState('');
@@ -10,10 +11,6 @@ const Newitter = ({ user }) => {
   }, []);
 
   const onChange = (e) => setNewitText(e.target.value);
-
-  const onEdit = (e) => console.log(e.currentTarget.id);
-
-  const onDelete = (e) => deleteNewit(e.currentTarget.id);
 
   const onsubmit = (e) => {
     e.preventDefault();
@@ -35,15 +32,7 @@ const Newitter = ({ user }) => {
       </form>
       <div>
         {newits.map((newit) => (
-          <div key={newit.id}>
-            <h4>{newit.text}</h4>
-            <button id={newit.id} onClick={onEdit}>
-              수정
-            </button>
-            <button id={newit.id} onClick={onDelete}>
-              삭제
-            </button>
-          </div>
+          <NewitItem key={newit.id} newit={newit} />
         ))}
       </div>
     </>
