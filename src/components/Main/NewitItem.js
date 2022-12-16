@@ -1,18 +1,26 @@
+import { useState } from 'react';
 import { deleteNewit } from 'utils/fbase/newitFbase';
-
-const onEdit = (e) => console.log(e.currentTarget.id);
-const onDelete = (e) => deleteNewit(e.currentTarget.id);
+import UpdateNewit from './UpdateNewit';
 
 const NewitItem = ({ newit }) => {
+  const [updateMode, setUpdateMode] = useState(false);
+  const onEdit = (e) => setUpdateMode((prev) => !prev);
+  const onDelete = (e) => deleteNewit(e.currentTarget.id);
   return (
     <>
-      <h4>{newit.text}</h4>
-      <button id={newit.id} onClick={onEdit}>
-        수정
-      </button>
-      <button id={newit.id} onClick={onDelete}>
-        삭제
-      </button>
+      {updateMode ? (
+        <UpdateNewit newit={newit} onEditMode={setUpdateMode} />
+      ) : (
+        <>
+          <h4>{newit.text}</h4>
+          <button id={newit.id} onClick={onEdit}>
+            수정
+          </button>
+          <button id={newit.id} onClick={onDelete}>
+            삭제
+          </button>
+        </>
+      )}
     </>
   );
 };
