@@ -1,5 +1,7 @@
+import Newitter from 'components/Newitter';
+
 const Home = () => {
-  return <div>Home</div>;
+  return <Newitter />;
 };
 
 export default Home;
