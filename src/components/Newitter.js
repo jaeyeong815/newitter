@@ -5,19 +5,8 @@ const Newitter = ({ user }) => {
   const [newitText, setNewitText] = useState('');
   const [newits, setNewits] = useState([]);
 
-  const getDbNewits = async () => {
-    const dbNewits = await getNewits();
-    dbNewits.forEach((newit) => {
-      const newitObj = {
-        ...newit.data(),
-        id: newit.id,
-      };
-      setNewits((prev) => [...prev, newitObj]);
-    });
-  };
-
   useEffect(() => {
-    getDbNewits();
+    getNewits(setNewits);
   }, []);
 
   const onChange = (e) => setNewitText(e.target.value);
