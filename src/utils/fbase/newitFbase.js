@@ -1,5 +1,14 @@
 import { firebaseApp } from './fbase';
-import { getFirestore, collection, addDoc, query, onSnapshot, orderBy } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  onSnapshot,
+  orderBy,
+  doc,
+  deleteDoc,
+} from 'firebase/firestore';
 
 const dbService = getFirestore(firebaseApp);
 
@@ -24,4 +33,8 @@ export const getNewits = async (setNewits) => {
     }));
     setNewits(newitObj);
   });
+};
+
+export const deleteNewit = async (id) => {
+  await deleteDoc(doc(dbService, 'newits', id));
 };
