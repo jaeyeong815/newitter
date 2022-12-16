@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
   signInWithPopup,
+  signOut,
 } from 'firebase/auth';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
@@ -66,4 +67,8 @@ export const googleLogin = async () => {
 export const githubLogin = async () => {
   const data = await signInWithPopup(authService, githubProvider);
   console.log('🚀 ~ file: fbase.js:68 ~ githubLogin ~ data', data);
+};
+
+export const logoutAccount = () => {
+  signOut(authService);
 };
