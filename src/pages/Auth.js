@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { createAccount, loginAccount } from 'fbase';
+import { createAccount, loginAccount, googleLogin, githubLogin } from 'fbase';
 import { stringReplace } from 'utils/stringReplace';
 
 const ERROR = 'error';
+const GOOGLE = 'google';
+const GITGUB = 'github';
 
 const Auth = () => {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -38,6 +40,16 @@ const Auth = () => {
     }
   };
 
+  const onSocialClick = (e) => {
+    const { name } = e.target;
+    if (name === GOOGLE) {
+      googleLogin();
+    }
+    if (name === GITGUB) {
+      githubLogin();
+    }
+  };
+
   return (
     <div>
       <form onSubmit={onSubmitHandler}>
@@ -62,8 +74,12 @@ const Auth = () => {
         {errorMsg}
       </form>
       <div>
-        <button>Google Log in</button>
-        <button>Github Log in</button>
+        <button name={GOOGLE} onClick={onSocialClick}>
+          Google Log in
+        </button>
+        <button name={GITGUB} onClick={onSocialClick}>
+          Github Log in
+        </button>
       </div>
     </div>
   );

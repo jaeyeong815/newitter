@@ -4,6 +4,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
@@ -21,6 +24,8 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 export const authService = getAuth(firebaseApp);
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 export const createAccount = async (email, password) => {
   try {
@@ -28,7 +33,7 @@ export const createAccount = async (email, password) => {
     return user;
   } catch (err) {
     const { message } = await err;
-    return message;
+    return 'error' + message;
   }
 };
 
@@ -51,4 +56,14 @@ export const authStateChanged = (setLogin, setInit) => {
     }
     setInit(true);
   });
+};
+
+export const googleLogin = async () => {
+  const data = await signInWithPopup(authService, googleProvider);
+  console.log('🚀 ~ file: fbase.js:61 ~ googleLogin ~ data', data);
+};
+
+export const githubLogin = async () => {
+  const data = await signInWithPopup(authService, githubProvider);
+  console.log('🚀 ~ file: fbase.js:68 ~ githubLogin ~ data', data);
 };
