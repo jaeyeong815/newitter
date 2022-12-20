@@ -15,9 +15,11 @@ const UpdateNewit = ({ newit, onEditMode }) => {
 
   return (
     <>
-      <input type='text' value={updateText} onChange={onChange} />
+      <form onSubmit={onEdit}>
+        <input type='text' value={updateText} onChange={onChange} />
+        <button type='submit'>완료</button>
+      </form>
       <button onClick={onCancel}>취소</button>
-      <button onClick={onEdit}>완료</button>
     </>
   );
 };
