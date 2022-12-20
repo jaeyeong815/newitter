@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { deleteNewit } from 'utils/fbase/newitFbase';
+import { deleteImg } from 'utils/fbase/storageFbase';
 import UpdateNewit from './UpdateNewit';
 
 const NewitItem = ({ newit, user }) => {
@@ -11,6 +12,7 @@ const NewitItem = ({ newit, user }) => {
   const onDelete = (e) => {
     const deleteOk = window.confirm('정말 삭제하시겠습니까?');
     deleteOk && deleteNewit(e.currentTarget.id);
+    deleteOk && newit.imageUrl && deleteImg(newit.imageUrl);
   };
 
   return (
