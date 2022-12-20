@@ -5,7 +5,10 @@ import UpdateNewit from './UpdateNewit';
 const NewitItem = ({ newit }) => {
   const [updateMode, setUpdateMode] = useState(false);
   const onEdit = (e) => setUpdateMode((prev) => !prev);
-  const onDelete = (e) => deleteNewit(e.currentTarget.id);
+  const onDelete = (e) => {
+    const deleteOk = window.confirm('정말 삭제하시겠습니까?');
+    deleteOk && deleteNewit(e.currentTarget.id);
+  };
   return (
     <>
       {updateMode ? (
