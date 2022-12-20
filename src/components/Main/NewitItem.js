@@ -20,6 +20,7 @@ const NewitItem = ({ newit, user }) => {
       ) : (
         <>
           <h4>{newit.text}</h4>
+          {newit.imageUrl && <img src={newit.imageUrl} alt='newitImg' width='50px' height='50px' />}
           {isOwner && (
             <>
               <button id={newit.id} onClick={onEdit}>

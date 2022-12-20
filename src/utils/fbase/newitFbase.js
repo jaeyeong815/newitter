@@ -13,11 +13,12 @@ import {
 
 const dbService = getFirestore(firebaseApp);
 
-export const addNewit = async (newit, user) => {
+export const addNewit = async (newit, url, userId) => {
   try {
     await addDoc(collection(dbService, 'newits'), {
       text: newit,
-      creatorId: user.uid,
+      imageUrl: url,
+      creatorId: userId,
       createdAt: Date.now(),
     });
   } catch (e) {

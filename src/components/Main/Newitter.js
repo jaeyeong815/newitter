@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import NewitItem from './NewitItem';
 import { addNewit, getNewits } from 'utils/fbase/newitFbase';
+import { getImgUrl } from 'utils/fbase/storageFbase';
 
 const Newitter = ({ user }) => {
   const [newitText, setNewitText] = useState('');
   const [newits, setNewits] = useState([]);
-  const [imgUrl, setImgUrl] = useState(null);
+  const [imgUrl, setImgUrl] = useState('');
 
   useEffect(() => {
     getNewits(setNewits);
@@ -24,11 +25,16 @@ const Newitter = ({ user }) => {
     reader.readAsDataURL(img);
   };
 
-  const onClearFile = () => setImgUrl(null);
+  const onClearFile = () => setImgUrl('');
 
-  const onsubmit = (e) => {
+  const onsubmit = async (e) => {
     e.preventDefault();
-    addNewit(newitText, user);
+    let imageUrl = '';
+    if (imgUrl) {
+      imageUrl = await getImgUrl(user.uid, imgUrl);
+      setImgUrl('');
+    }
+    addNewit(newitText, imageUrl, user.uid);
     setNewitText('');
   };
 
