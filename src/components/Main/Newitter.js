@@ -32,7 +32,7 @@ const Newitter = ({ user }) => {
       </form>
       <div>
         {newits.map((newit) => (
-          <NewitItem key={newit.id} newit={newit} />
+          <NewitItem key={newit.id} newit={newit} user={user} />
         ))}
       </div>
     </>
