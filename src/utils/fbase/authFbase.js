@@ -8,6 +8,7 @@ import {
   GithubAuthProvider,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 
 export const authService = getAuth(firebaseApp);
@@ -36,12 +37,16 @@ export const loginAccount = async (email, password) => {
 
 export const authStateChanged = (setLogin, setInit, setUser) => {
   onAuthStateChanged(authService, (user) => {
+    const userData = {
+      displayName: user.displayName,
+      uid: user.uid,
+    };
     if (user) {
       setLogin(true);
     } else {
       setLogin(false);
     }
-    setUser(user ?? null);
+    setUser(userData ?? null);
     setInit(true);
   });
 };
@@ -58,4 +63,15 @@ export const githubLogin = async () => {
 
 export const logoutAccount = () => {
   signOut(authService);
+};
+
+export const updateUserProfile = (updateData) => {
+  updateProfile(authService.currentUser, updateData);
+};
+
+export const refreshUser = (setUser) => {
+  setUser({
+    displayName: authService.currentUser.displayName,
+    uid: authService.currentUser.uid,
+  });
 };
