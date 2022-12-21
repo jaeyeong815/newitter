@@ -9,6 +9,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  where,
 } from 'firebase/firestore';
 
 const dbService = getFirestore(firebaseApp);
@@ -44,4 +45,11 @@ export const updateNewit = async (id, updateData) => {
 
 export const deleteNewit = async (id) => {
   await deleteDoc(doc(dbService, 'newits', id));
+};
+
+export const getSpecificNewit = async (userId) => {
+  const dbQuery = query(collection(dbService, 'newits'), where('creatorId', '==', userId));
+  await onSnapshot(dbQuery, async (snapshot) => {
+    snapshot.docs.forEach((doc) => console.log(doc.data()));
+  });
 };
