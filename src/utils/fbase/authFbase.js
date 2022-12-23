@@ -60,13 +60,11 @@ export const onUnSubscribeChanged = (unSubscribe) => {
 };
 
 export const googleLogin = async () => {
-  const data = await signInWithPopup(authService, googleProvider);
-  console.log('🚀 ~ file: fbase.js:61 ~ googleLogin ~ data', data);
+  await signInWithPopup(authService, googleProvider);
 };
 
 export const githubLogin = async () => {
-  const data = await signInWithPopup(authService, githubProvider);
-  console.log('🚀 ~ file: fbase.js:68 ~ githubLogin ~ data', data);
+  await signInWithPopup(authService, githubProvider);
 };
 
 export const logoutAccount = () => {

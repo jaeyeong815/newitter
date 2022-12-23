@@ -50,9 +50,9 @@ export const deleteNewit = async (id) => {
   await deleteDoc(doc(dbService, 'newits', id));
 };
 
-export const getSpecificNewit = async (userId) => {
-  const dbQuery = query(collection(dbService, 'newits'), where('creatorId', '==', userId));
-  await onSnapshot(dbQuery, async (snapshot) => {
-    snapshot.docs.forEach((doc) => console.log(doc.data()));
-  });
-};
+// export const getSpecificNewit = async (userId) => {
+//   const dbQuery = query(collection(dbService, 'newits'), where('creatorId', '==', userId));
+//   await onSnapshot(dbQuery, async (snapshot) => {
+//     snapshot.docs.forEach((doc) => console.log(doc.data()));
+//   });
+// };
