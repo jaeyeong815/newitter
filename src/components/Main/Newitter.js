@@ -11,14 +11,14 @@ const Newitter = ({ user }) => {
   }, []);
 
   return (
-    <>
+    <div className='container'>
       <CreateNewit user={user} />
       <div>
         {newits.map((newit) => (
           <NewitItem key={newit.id} newit={newit} user={user} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

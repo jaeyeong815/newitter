@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { addNewit } from 'utils/fbase/newitFbase';
 import { getImgUrl } from 'utils/fbase/storageFbase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const CreateNewit = ({ user }) => {
   const [newitText, setNewitText] = useState('');
@@ -23,6 +25,9 @@ const CreateNewit = ({ user }) => {
 
   const onsubmit = async (e) => {
     e.preventDefault();
+    if (newitText === '') {
+      return;
+    }
     let imageUrl = '';
     if (imgUrl) {
       imageUrl = await getImgUrl(user.uid, imgUrl);
@@ -33,20 +38,44 @@ const CreateNewit = ({ user }) => {
   };
 
   return (
-    <form onSubmit={onsubmit}>
+    <form onSubmit={onsubmit} className='factoryForm'>
+      <div className='factoryInput__container'>
+        <input
+          type='text'
+          placeholder='오늘은 무슨 일이 있었나요?'
+          className='factoryInput__input'
+          maxLength={120}
+          value={newitText}
+          onChange={onChange}
+        />
+        <input type='submit' value='&rarr;' className='factoryInput__arrow' />
+      </div>
+      <label htmlFor='attach-file' className='factoryInput__label'>
+        <span>Add photos</span>
+        <FontAwesomeIcon icon={faPlus} />
+      </label>
       <input
-        type='text'
-        placeholder='오늘은 무슨 일이 있었나요?'
-        maxLength={120}
-        value={newitText}
-        onChange={onChange}
+        id='attach-file'
+        type='file'
+        accept='image/*'
+        style={{
+          opacity: 0,
+        }}
+        onChange={onFileChange}
       />
-      <input type='file' accept='image/*' onChange={onFileChange} />
-      <button type='submit'>Newit!</button>
       {imgUrl && (
-        <div>
-          <img src={imgUrl} alt='미리보기' width='50px' height='50px' />
-          <button onClick={onClearFile}>Clear</button>
+        <div className='factoryForm__attachment'>
+          <img
+            src={imgUrl}
+            alt='미리보기'
+            style={{
+              backgroundImage: imgUrl,
+            }}
+          />
+          <div className='factoryForm__clear' onClick={onClearFile}>
+            <span>Remove</span>
+            <FontAwesomeIcon icon={faTimes} />
+          </div>
         </div>
       )}
     </form>

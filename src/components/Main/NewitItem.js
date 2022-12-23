@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import UpdateNewit from './UpdateNewit';
 import { deleteNewit } from 'utils/fbase/newitFbase';
 import { deleteImg } from 'utils/fbase/storageFbase';
-import UpdateNewit from './UpdateNewit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 const NewitItem = ({ newit, user }) => {
   const [updateMode, setUpdateMode] = useState(false);
@@ -16,26 +18,26 @@ const NewitItem = ({ newit, user }) => {
   };
 
   return (
-    <>
+    <div className='nweet' style={{ marginTop: 30 }}>
       {updateMode ? (
         <UpdateNewit newit={newit} onEditMode={setUpdateMode} />
       ) : (
         <>
           <h4>{newit.text}</h4>
-          {newit.imageUrl && <img src={newit.imageUrl} alt='newitImg' width='50px' height='50px' />}
+          {newit.imageUrl && <img src={newit.imageUrl} alt='newitImg' />}
           {isOwner && (
-            <>
-              <button id={newit.id} onClick={onEdit}>
-                수정
-              </button>
-              <button id={newit.id} onClick={onDelete}>
-                삭제
-              </button>
-            </>
+            <div className='nweet__actions'>
+              <span id={newit.id} onClick={onEdit}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+              <span id={newit.id} onClick={onDelete}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+            </div>
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 

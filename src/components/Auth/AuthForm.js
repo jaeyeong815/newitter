@@ -35,27 +35,37 @@ const AuthForm = () => {
     }
   };
   return (
-    <form onSubmit={onSubmitHandler}>
-      <p onClick={toggleAccount}>{newAccount ? '로그인 하기' : '회원가입 하기'}</p>
-      <input
-        type='text'
-        placeholder='Email'
-        name='email'
-        onChange={onChangeHandler}
-        value={loginData.email}
-        required
-      />
-      <input
-        type='password'
-        placeholder='Password'
-        name='password'
-        onChange={onChangeHandler}
-        value={loginData.password}
-        required
-      />
-      <input type='submit' value={newAccount ? 'Sign up' : 'Sign in'} />
-      {errorMsg}
-    </form>
+    <>
+      <form onSubmit={onSubmitHandler} className='container'>
+        <input
+          type='text'
+          placeholder='Email'
+          name='email'
+          onChange={onChangeHandler}
+          value={loginData.email}
+          className='authInput'
+          required
+        />
+        <input
+          type='password'
+          placeholder='Password'
+          name='password'
+          onChange={onChangeHandler}
+          value={loginData.password}
+          className='authInput'
+          required
+        />
+        <input
+          type='submit'
+          className='authInput authSubmit'
+          defaultValue={newAccount ? 'Sign up' : 'Sign in'}
+        />
+        {errorMsg && <span className='authError'>{errorMsg}</span>}
+      </form>
+      <span onClick={toggleAccount} className='authSwitch'>
+        {newAccount ? 'Sign In' : 'Create Account'}
+      </span>
+    </>
   );
 };
 
