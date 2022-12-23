@@ -37,16 +37,16 @@ export const loginAccount = async (email, password) => {
 
 export const authStateChanged = (setLogin, setInit, setUser) => {
   onAuthStateChanged(authService, (user) => {
-    const userData = {
-      displayName: user.displayName,
-      uid: user.uid,
-    };
     if (user) {
+      const userData = {
+        displayName: user.displayName,
+        uid: user.uid,
+      };
+      setUser(userData ?? null);
       setLogin(true);
     } else {
       setLogin(false);
     }
-    setUser(userData ?? null);
     setInit(true);
   });
 };
