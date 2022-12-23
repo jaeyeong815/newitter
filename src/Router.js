@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import Auth from 'pages/Auth';
 import Home from 'pages/Home';
 import Profile from 'pages/Profile';
@@ -6,7 +6,7 @@ import Navigation from 'components/common/Navigation';
 
 const Router = ({ isLoggedIn, user }) => {
   return (
-    <BrowserRouter>
+    <HashRouter basen='/'>
       {isLoggedIn && <Navigation user={user} />}
       <div className='route'>
         <Routes>
@@ -20,7 +20,7 @@ const Router = ({ isLoggedIn, user }) => {
           )}
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

@@ -1,4 +1,5 @@
 {
+  "homepage": "https://jaeyeong815.github.io/newitter",
   "name": "newitter",
   "version": "0.1.0",
   "private": true,
@@ -44,6 +45,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://jaeyeong815.github.io/newitter"
+  }
 }
