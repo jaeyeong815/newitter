@@ -11,6 +11,7 @@ import {
   deleteDoc,
   where,
 } from 'firebase/firestore';
+import { onUnSubscribeChanged } from './authFbase';
 
 const dbService = getFirestore(firebaseApp);
 
@@ -29,13 +30,15 @@ export const addNewit = async (newit, url, userId) => {
 
 export const getNewits = async (setNewits) => {
   const dbQuery = query(collection(dbService, 'newits'), orderBy('createdAt', 'desc'));
-  await onSnapshot(dbQuery, async (snapshot) => {
+  const unSubscribe = await onSnapshot(dbQuery, async (snapshot) => {
     const newitObj = await snapshot.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
     }));
     setNewits(newitObj);
   });
+
+  onUnSubscribeChanged(unSubscribe);
 };
 
 export const updateNewit = async (id, updateData) => {

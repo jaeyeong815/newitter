@@ -51,6 +51,14 @@ export const authStateChanged = (setLogin, setInit, setUser) => {
   });
 };
 
+export const onUnSubscribeChanged = (unSubscribe) => {
+  onAuthStateChanged(authService, (user) => {
+    if (user === null) {
+      unSubscribe();
+    }
+  });
+};
+
 export const googleLogin = async () => {
   const data = await signInWithPopup(authService, googleProvider);
   console.log('🚀 ~ file: fbase.js:61 ~ googleLogin ~ data', data);
