@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/newitter/static/css/main.982ae35d.css",
+    "main.js": "/newitter/static/js/main.00ba172d.js",
+    "index.html": "/newitter/index.html",
+    "main.982ae35d.css.map": "/newitter/static/css/main.982ae35d.css.map",
+    "main.00ba172d.js.map": "/newitter/static/js/main.00ba172d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.982ae35d.css",
+    "static/js/main.00ba172d.js"
+  ]
+}
