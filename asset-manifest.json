@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/newitter/static/css/main.982ae35d.css",
-    "main.js": "/newitter/static/js/main.00ba172d.js",
+    "main.js": "/newitter/static/js/main.248d5035.js",
     "index.html": "/newitter/index.html",
     "main.982ae35d.css.map": "/newitter/static/css/main.982ae35d.css.map",
-    "main.00ba172d.js.map": "/newitter/static/js/main.00ba172d.js.map"
+    "main.248d5035.js.map": "/newitter/static/js/main.248d5035.js.map"
   },
   "entrypoints": [
     "static/css/main.982ae35d.css",
-    "static/js/main.00ba172d.js"
+    "static/js/main.248d5035.js"
   ]
 }
