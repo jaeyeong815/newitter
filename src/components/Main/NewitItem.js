@@ -8,7 +8,7 @@ const NewitItem = ({ newit, user }) => {
 
   const isOwner = newit.creatorId === user.uid;
 
-  const onEdit = (e) => setUpdateMode((prev) => !prev);
+  const onEdit = () => setUpdateMode((prev) => !prev);
   const onDelete = (e) => {
     const deleteOk = window.confirm('정말 삭제하시겠습니까?');
     deleteOk && deleteNewit(e.currentTarget.id);
